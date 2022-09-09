@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from '../actions/api.service';
 import { UserModel } from './user.model';
 
@@ -50,13 +50,16 @@ export class TableComponent implements OnInit {
     user_obj.phoneNo = this.formValue.value.phoneNo;
     user_obj._Role = this.formValue.value._Role;
     user_obj.addRess = this.formValue.value.addRess;
+    this.formValue.value.doe = user_obj.doe;
+    console.log(user_obj);
     
-    let d = new Date()
-    user_obj.doe = d.toString();
-
-    this.api.postUser(user_obj)
+    console.log(user_obj.doe);
+    
+    console.log(this.formValue.value);
+    
+    this.api.postUser(this.formValue.value)
     .subscribe(res=>{
-      console.log(res);
+      
       alert("Success");
       let cancel = document.getElementById('cancel');
       cancel!.click();
@@ -88,6 +91,7 @@ export class TableComponent implements OnInit {
     this.updatebtn = true;
     this.user_obj.id = row.id;
     this.user_obj.doe = row.doe;
+    
     this.formValue.controls['firstName'].setValue(row.firstName);
     this.formValue.controls['middleName'].setValue(row.middleName);
     this.formValue.controls['lastName'].setValue(row.lastName);
@@ -98,7 +102,6 @@ export class TableComponent implements OnInit {
   }
 
   updateUserDeets(){
-    this.user_obj.doe = this.user_obj.doe;
     this.user_obj.firstName = this.formValue.value.firstName;
     this.user_obj.middleName = this.formValue.value.middleName;
     this.user_obj.lastName = this.formValue.value.lastName;
@@ -106,9 +109,11 @@ export class TableComponent implements OnInit {
     this.user_obj.phoneNo = this.formValue.value.phoneNo;
     this.user_obj._Role = this.formValue.value._Role;
     this.user_obj.addRess = this.formValue.value.addRess;
-
-    this.api.updateUser(this.user_obj, this.user_obj.id)
+    this.formValue.value.doe = this.user_obj.doe;
+    console.log(this.user_obj);
+    this.api.updateUser(this.formValue.value, this.user_obj.id)
     .subscribe(res=>{
+      console.log(res);
       alert("updated");
       let cancel = document.getElementById('cancel');
       cancel!.click();
