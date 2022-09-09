@@ -35,6 +35,11 @@ export class TableComponent implements OnInit {
     this.getUsers();
   }
 
+  load(){
+    document.getElementById("loadbtn")!.innerText = "Refresh Data";
+    document.getElementById("table")!.style.visibility = "visible";
+  }
+
   clicked(){
     this.formValue.reset();
     this.addbtn = true;
