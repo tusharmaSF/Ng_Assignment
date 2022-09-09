@@ -56,11 +56,6 @@ export class TableComponent implements OnInit {
     user_obj._Role = this.formValue.value._Role;
     user_obj.addRess = this.formValue.value.addRess;
     this.formValue.value.doe = user_obj.doe;
-    console.log(user_obj);
-    
-    console.log(user_obj.doe);
-    
-    console.log(this.formValue.value);
     
     this.api.postUser(this.formValue.value)
     .subscribe(res=>{
@@ -95,7 +90,6 @@ export class TableComponent implements OnInit {
     this.addbtn = false;
     this.updatebtn = true;
     this.user_obj.id = row.id;
-    this.user_obj.doe = row.doe;
     
     this.formValue.controls['firstName'].setValue(row.firstName);
     this.formValue.controls['middleName'].setValue(row.middleName);
@@ -104,17 +98,10 @@ export class TableComponent implements OnInit {
     this.formValue.controls['phoneNo'].setValue(row.phoneNo);
     this.formValue.controls['_Role'].setValue(row._Role);
     this.formValue.controls['addRess'].setValue(row.addRess);
+    this.formValue.controls['doe'].setValue(row.doe);
   }
 
   updateUserDeets(){
-    this.user_obj.firstName = this.formValue.value.firstName;
-    this.user_obj.middleName = this.formValue.value.middleName;
-    this.user_obj.lastName = this.formValue.value.lastName;
-    this.user_obj.eMail = this.formValue.value.eMail;
-    this.user_obj.phoneNo = this.formValue.value.phoneNo;
-    this.user_obj._Role = this.formValue.value._Role;
-    this.user_obj.addRess = this.formValue.value.addRess;
-    this.formValue.value.doe = this.user_obj.doe;
     console.log(this.user_obj);
     this.api.updateUser(this.formValue.value, this.user_obj.id)
     .subscribe(res=>{
