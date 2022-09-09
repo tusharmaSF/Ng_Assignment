@@ -1,11 +1,10 @@
 <br>
 <nav class="text-center">
-  <!-- <button type="button" class="btn btn-primary btn-lg">Load Data</button> -->
-  <!-- <br><br> -->
-  <button (click)="clicked()" type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Add User</button>
+  <button id='loadbtn' type="button" (click)='load()' class="btn btn-primary btn-lg">Load Data</button>
+  <button (click)="clicked()" type="button" class="btn btn-primary btn-lg mx-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Add User</button>
 </nav>
 <br>
-<table class="table table-dark table-striped">
+<table id="table" class="table table-dark table-striped" style="visibility: hidden">
     <thead>
         <tr>
             <th scope="col">ID</th>
